@@ -1,0 +1,1 @@
+Command line options:  -nspice testbench128x256.cir -nvec testbench128x256.vec -C testbench128x256.cfg -o result/testbench128x256

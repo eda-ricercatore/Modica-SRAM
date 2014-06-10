@@ -1,0 +1,20 @@
+*Andrew Mattheisen amattheisen@yahoo.com
+*Zhiyang Ong Zhiyang@ieee.org
+*
+.param vsupply = 1.8v
+.param period = 5.4n
+.param slewr = 1p
+
+.include 'tsmc_018.spice'
+.include 'testbench128x256.spice'
+
+VCLK CLK GND pulse (0v 'vsupply' '0.5*period' 'slewr' 'slewr' '0.5*period' 'period+2*slewr')
+
+***********************************************************************
+*other signals are in .vec file
+***********************************************************************
+*note do nothing for first 1/2 clk period
+**********************************************************************
+
+.tran 0.1n 120n
+.end

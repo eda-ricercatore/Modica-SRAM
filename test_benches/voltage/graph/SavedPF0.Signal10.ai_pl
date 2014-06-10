@@ -1,0 +1,41 @@
+program               aim
+command               calculator
+events_file           SavedPF0.Signal10.p3
+events.FORMAT         binary
+events.RECORD_SIZE    128
+events.PRECISION      double
+events.NUMBER_RECORDS 2
+created               10/24/07 (12:45:59)
+machine_id            103
+byte_order            big_endian
+fp_format             ieee
+unit.logic_4          logic_4
+xname                 t
+xunits                s
+xrange                I 0 40n
+ynames
+   Group0
+yproperty.type
+   b
+yproperty.width
+   10
+yunits
+   logic_4
+nstates.logic_4       4
+boolean_map.logic_4
+   0
+   1
+   x
+   z
+print_map.logic_4
+   0
+   1
+   x
+   z
+plot_map.logic_4
+   LOW.1
+   HIGH.1
+   MIDDLE.1
+   UNKNOWN.1
+npoints               10
+format                binary

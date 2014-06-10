@@ -1,0 +1,222 @@
+The circuits for the sense amplifer were redesigned. Since the write data
+path has a smaller delay than the read data path (from the logical effort
+calculations carried out in the MATLAB scripts), it is not re-sized for
+better performance.
+
+Using the method of logical effort [see sa_wdp.m], I have determined that
+the sizes for transistors in a transmission gate should be minimum. This
+is because the logical effort for the transmission gate is the smallest
+when the sizes for the PMOS and NMOS transistors in the gate are minimum;
+its logical effort is 4/3.
+
+
+
+The SPICE decks (sram_part1_3A.spice and sram_part1_3B.spice) for the
+sense amplifer were developed, and simulated to determine the sizes
+for its transistors. It is found that as the sizes of the PMOS pass
+transistors decrease, the time taken to read a low in out line droped
+to 0 V is smaller. Hence, since the minimum sized PMOS transistors in
+the sense amplifier meet the timing requirements, these transistors
+were given minimum sizes. In addition, the time taken for reading a
+zero at out using the aforementioned estimation is shorter as the sizes
+of the transistors increase.
+
+The analytical determination of the sizes for the PMOS pass transistors
+is also used to facilitate the determination of whether buffers need to
+be added to the path from the SRAM block to the output flip-flops. It
+is found that the logical effort for the rising (g_{rising}=1.8593) and
+falling (g_{falling}=2.7886) delays in the PMOS pass transistor are
+different [see sa_wdp.m]. Thus, the logical effort for falling delay
+is chosen for delay estimation of the critical path(s) since it is
+greater. 
+
+The input capacitance of this path is about 323.5980 pF, and its output
+capacitance is 35.9649 pF [see sa_wdp.m]. The latter models the input
+capacitance of the output flip-flops and the capacitance of the bit 
+line that connects the sense amplifier to the bit line. On the other
+hand, the former models the diffusion of the capacitance of the PMOS
+pass transistor connecting a bit line to the sense amplifier. In 
+addition, the input capacitance also models the connection of eight
+bit lines (or bit_bar lines) to the sense amplifier.
+
+When the path effort F is determined for the critical path of read, it
+is found that F is less than one due to the low H [see sa_wdp.m]. Thus, 
+the read data path from the sense amplifiers to the output flip-flops
+need not be optimized with gate sizing and buffer insertion.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Appendix: Explanation of MATLAB scripts
+The MATLAB script [sram_design.m] is used to determine the logical
+effort for different architectural designs to find a good trade-off
+between delay and area, while using delay minimization as the sole
+objective of performance optization.
+
+It calls the script [le_pass_transistor.m] to determine the logical
+effort of the pass transistor that was intended for use in the 
+column MUX/DEMUX, sense amplifier design, and the circuit for the
+write data path.
+
+It also calls the scripts [coldecoder.m] and [rowdecoder.m] to 
+determine the delay through the column and row decoders for various
+SRAM architectures.
+
+The architecture of the SRAM being designed depends on the arrangement
+of macros in the SRAM block. The following arrangements of SRAM
+blocks are considered:
+1024	rows * 32		columns = 1024	\lambda * 1024	\lambda
+512		rows * 64		columns = 512	\lambda * 512	\lambda
+256		rows * 128 		columns = 256	\lambda * 256	\lambda
+128 	rows * 256 		columns = 256	\lambda * 256	\lambda
+64 		rows * 512 		columns = 512	\lambda * 512	\lambda
+32 		rows * 1024 	columns = 1024	\lambda * 1024	\lambda
+16 		rows * 2048 	columns = 2048	\lambda * 2048	\lambda
+1 		rows * 32768	columns = 32768	\lambda * 32768	\lambda
+
+The arrangement of SRAM blocks determine the dimensions/sizes of the
+row and column decoders. For example, a SRAM block of n rows and m
+columns will have the following decoders: a a-to-n row decoder and
+a b-to-m column decoder, where (a+b=10 bits) is the number of inputs
+to the row and column decoders. From the size/dimension of the decoder,
+it can be determined if there are any long wires/interconnects that
+exceed 500 \lambda. If so, such wires/interconnects can be modeled as
+a \pi-model.
+
+In addition, from using the method of logical effort, the optimum
+number of stages for this given path(s) can be determined. If the 
+current number of stages in the given path is not the optimum number,
+add buffers to the given path. This may subsequently require the 
+use differeiation or iteration to size these gates in the given path,
+and other circuits in the given path.
+
+If a SRAM macro contains more than 32 SRAM cells in any direction or
+dimension, it will need to create \pi-models for modeling the parasitic
+capacitances and resistances between them.
+
+
+
+
+Hence, the appropriate leftover space is:
+1024 - 32 =	992		==> 992		\lambda * 1024	\lambda = 
+512 - 64 = 448		==> 448		\lambda * 512	\lambda = 
+256 - 128 = 128		==> 128		\lambda * 256	\lambda = 
+256 - 128 = 128		==> 128		\lambda * 256	\lambda = 
+512 - 64 = 448		==> 448		\lambda * 512	\lambda = 
+1024 - 32 =	992		==> 992		\lambda * 1024	\lambda = 
+2048 - 32 = 2032	==> 2032	\lambda * 2048	\lambda = 
+32768 - 1 = 32767	==> 32767	\lambda * 32768	\lambda = 
+
+
+
+
+
+
+Engineering Change Order: #3
+CEO Mattheisen Technologies, can you do the write-up for the MATLAB
+script [determineTao.m] and HSPICE deck [dettao.spice] to determine
+the value of \tau. This write-up can be included in the appendix of
+our report.
+Included in the MATLAB scripts that I have sent you is the file named
+[calibrate.m] which is also used to determine the value of \tau and
+\p_{inv}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+pp.22-23
+Measuring Wasted Power NanoSim defines wasted power, also called
+short-circuit current, for a circuit block, as any DC current
+consumed by the circuit block that is not used to charge block
+capacitances or capacitances driven by the block. Specifically,
+NanoSim defines the total current consumed by the block as the 
+sum of the total supply current and the current from the biputs
+that are acting as supplies. (The current from biputs acting as
+ground is not included.) 
+
+consumed current = total supply + \sum biput currents (i < 0)
+
+The consumed current is comprised of two types of current:
+capacitive current and wasted current:   
+#	Capacitive Current: any current for which its conductive
+	path terminates (or originates) at a circuit capacitance.
+	This current is essential in carrying out the switching
+	functions of the circuit.
+#	Wasted Current: any current for which both ends of the
+	conducting path are voltage sources. This current does not
+	contribute to the changing of circuit voltages and,
+	therefore, is considered  wasted.  Usually, wasted power
+	consists of the DC current flowing from power to ground.
+	
+	This wasted power can come from crowbar or short-circuit
+	current caused by both P-channel and N-channel devices 
+	being active during a transition. It can also come from 
+	floating inputs or from DC paths that are unintended such
+	as device leakage currents. In addition, analog bias
+	circuits and current mirrors in operational amplifiers
+	that cannot be avoided are reported as wasted power.
+	
+	The wasted current can be further divided into two
+	categories: dynamic and static. Dynamic wasted current is
+	the portion of wasted current that occurs while the
+	circuit is actively switching. The crowbar or short-circuit
+	current, previously mentioned, is an example of dynamic 
+	wasted current. Conversely, static wasted current is the 
+	portion of wasted current that occurs while the circuit 
+	is inactive or not switching. This typically consists of
+	device leakage currents or other static DC paths.
+
+pp. 37
+Performing a Dynamic Power Consumption Analysis This section 
+provides an overview of the NanoSim features that can be used 
+to identify and diagnose, during the dynamic simulation, 
+conditions in your circuits that could lead to excessive power 
+consumption. 
+
+Information is included on the following subjects:   
+# Dynamic Rise/Fall Time Checking   
+# Detecting Dynamic Floating Nodes (Z-State Nodes)   
+# Detecting Excessive Branch Currents   
+# Analyzing Hot-Spot Node Currents   
+# Detecting Dynamic DC Paths 
+
+Checking Dynamic Rise and Fall Times (U-State Nodes)
+# There are a couple of reasons why a circuit could end up 
+  consuming an unexpectedly large amount of power. If a node
+  spends an excessive amount of time in a U-state, it could 
+  create a large short-circuit current.

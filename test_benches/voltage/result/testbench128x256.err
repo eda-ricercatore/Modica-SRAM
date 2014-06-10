@@ -1,0 +1,15 @@
+;! error_format 5.2
+; --------------------------------------------------------
+;|                                                        |
+;|               NanoSim Version Y-2006.06                |
+;|                 SN: P20060518-SunOS_5                  |
+;|              Machine Name: aludra.usc.edu              |
+;| Copyright (c) 2006 Synopsys Inc., All Rights Reserved. |
+;|                                                        |
+; --------------------------------------------------------
+;
+;Built by nsmgr in " 20060518_sparcOS5_p4_y2006.06_ns " on Thu May 18 22:17:23 PDT 2006
+; Thu Oct 25 02:26:13 2007
+; 
+
+; Total number of errors in this file: 0

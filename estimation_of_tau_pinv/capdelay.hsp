@@ -1,0 +1,113 @@
+* capdelay.hsp
+
+* Written 10/3/96 by David Harris
+* This spice deck extracts the capacitance per micron
+* of transistor width for an inverter.
+
+* The deck runs an optimization to find the value of a linear
+* capacitor such that the delay of an inverter driving the
+* linear capacitor equals the delay of the inverter driving
+* a load inverter.
+
+***********************************************************************
+* Set supply and library
+***********************************************************************
+ 
+.temp 50                    * Set operating temp
+.param Sup=2.50
+.protect                    * Don't print the contents of library
+.lib '/auto/home-scf-06/ee577/cad/lib/spice/tsmc025um.spice' TT
+.unprotect                  * Resume printing SPICE deck
+.param Supply='1.0*Sup'     * Set characterization voltage
+.opt scale=0.15u             * Set lambda
+
+.param ct = 10n		* cycle time for the pulse source
+.param rt = 0.2n	* rise time for the pulse source
+
+* Save results of simulation for viewing
+.options post
+
+***********************************************************************
+* Define power supply
+***********************************************************************
+
+.global Vdd 	Gnd
+Vdd	Vdd	Gnd	'Supply'	* Supply is set by .lib call
+
+***********************************************************************
+* Define Subcircuits
+***********************************************************************
+
+.subckt	inv In Out
+*m1	Out In Gnd Gnd	nfet	l=2 w=16 ad=80 as=80 pd=26 ps=26
+*m2	Out In Vdd Vdd	pfet	l=2 w=32 ad=160 as=160 pd=26 ps=26
+m1	Out In Gnd Gnd	nfet	l=2 w=16 ad=0 as=0 pd=0 ps=0
+m2	Out In Vdd Vdd	pfet	l=2 w=32 ad=0 as=0 pd=0 ps=0
+.ends
+
+***********************************************************************
+* Top level simulation netlist
+***********************************************************************
+
+x1 	In	Inb	inv			* set appropriate slope
+x2	Inb	Inv	inv	M=2		* drive real load
+xload	Inv	Dum	inv	M=8		* real load
+xdummy	Dum	DumDum	inv	M=32		* load on load (important!)
+x3	Inb	Cap	inv	M=2		* drive linear capacitor
+c1	Cap	Gnd	'CperMicron*8*(16+32)*0.15u/1u' * linear capacitor
+
+***********************************************************************
+* Stimulus
+***********************************************************************
+
+* Format of pulse input:
+* pulse v_initial v_final t_delay t_rise t_fall t_pulsewidth t_period
+
+Vin     In      Gnd     pulse 0 'Supply' 1ns 'rt' 'rt' 'ct/2-rt' 'ct'
+
+* Set Initial Conditions to insure no false transitions during 
+* initialization
+
+.IC V(Inb)='Supply' V(Inv)=0 V(Dum)='Supply' V(DumDum)=0
+
+***********************************************************************
+* Measurements
+***********************************************************************
+
+* Measure delay through inverters x2 and x3.
+* Minimize this delay to find proper CperMicron
+
+* Measure the rise and fall delays of the two inverters
+.measure invR
++       TRIG v(Inb)  VAL='Supply/2' FALL=1 
++       TARG v(Inv)  VAL='Supply/2' RISE=1
+.measure  capR
++       TRIG v(Inb)  VAL='Supply/2' FALL=1 
++       TARG v(Cap)  VAL='Supply/2' RISE=1
+.measure invF
++       TRIG v(Inb)  VAL='Supply/2' RISE=1
++       TARG v(Inv)  VAL='Supply/2' FALL=1 
+.measure  capF
++       TRIG v(Inb)  VAL='Supply/2' RISE=1
++       TARG v(Cap)  VAL='Supply/2' FALL=1 
+
+* Compute the mismatch between the rise and fall times
+.measure errorR param='invR - capR' goal=0
+.measure errorF param='invF - capF' goal=0
+
+* Optimize to find the capacitance per micron
+* optrange is of the form (guess, min, max)
+* a narrow range and good guess make the simulation faster
+
+.param CperMicron=optrange(2.0f, 1.5f, 2.5f) 
+.model optmod opt itropt=30 
+.tran .01ns 12ns SWEEP OPTIMIZE = optrange RESULTS=errorR,errorF MODEL=optmod
+*.tran .1ns 12ns SWEEP OPTIMIZE = optrange RESULTS=errorR,errorF MODEL=optmod
+
+***********************************************************************
+* End of Deck
+***********************************************************************
+.measure CperMic param = 'CperMicron'
+
+.end
+

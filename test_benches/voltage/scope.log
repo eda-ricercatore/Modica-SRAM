@@ -1,0 +1,86 @@
+wm geometry .sigmgr 376x200+10+365
+Graph:DSel
+Graph:Select Graph0
+Graph:DSel
+Graph itemselect Signal84 add
+# Signal84
+Graph itemselect Signal84 rem
+Graph itemselect Signal84 add
+# Signal84
+Graph itemselect Signal96 add
+# Signal96
+Graph delsignal selected
+Graph:DSel
+Graph itemselect Signal89 add
+# Signal89
+Graph itemselect Signal89 rem
+Graph itemselect Signal89 add
+# Signal89
+Graph itemselect Signal93 add
+# Signal93
+Graph itemselect Signal88 add
+# Signal88
+Graph delsignal selected
+Graph:DSel
+Graph itemselect Signal92 add
+# Signal92
+Graph itemselect Signal92 rem
+Graph itemselect Signal92 add
+# Signal92
+Graph itemselect Signal87 add
+# Signal87
+Graph itemselect Signal91 add
+# Signal91
+Graph delsignal selected
+Graph:DSel
+Graph itemselect Signal86 add
+# Signal86
+Graph itemselect Signal86 rem
+Graph itemselect Signal86 add
+# Signal86
+Graph itemselect Signal90 add
+# Signal90
+Graph delsignal selected
+Mdi:ArrangeIcons
+wm geometry . 981x752+183+98
+Mdi:ArrangeIcons
+wm geometry . 1159x752+5+98
+Mdi:ArrangeIcons
+wm geometry . 1159x752+-22+98
+Mdi:ArrangeIcons
+wm geometry . 1159x752+-13+98
+Graph:DSel
+Graph:DSel
+Graph delsignal selected
+Graph delsignal selected
+Graph delsignal selected
+Graph delsignal selected
+Graph delsignal selected
+Graph delsignal selected
+Graph delsignal selected
+Graph delsignal selected
+Graph delsignal selected
+Graph delsignal selected
+Graph delsignal selected
+Graph delsignal selected
+Graph delsignal selected
+Graph delsignal selected
+Graph delsignal selected
+Graph delsignal selected
+Graph delsignal selected
+Graph delsignal selected
+Graph delsignal selected
+Graph delsignal selected
+Graph delsignal selected
+Graph delsignal selected
+Graph delsignal selected
+Graph delsignal selected
+Graph delsignal selected
+Graph delsignal selected
+Graph:DSel
+Graph:DSel
+Graph:DSel
+Graph itemselect Signal83 add
+# Signal83
+Graph:DSel
+Graph:SaveGraph Graph0 /home/scf-08/mattheis/ee577b/workingdir/.scopecfg_data/Graph0 0

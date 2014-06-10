@@ -1,0 +1,485 @@
+* This is written by Zhiyang Ong (zhiyango@usc.edu; 6004 9194 12) and
+* and Andrew Mattheisen (mattheis@usc.edu; 2134 5147 11)
+* for EE 577B, SRAM Project 
+* Part 1, Q2
+* This spice deck models an SRAM cell for its design
+
+
+***********************************************************************
+* Preamble...
+*
+* Set voltage supply and library, among other things...
+***********************************************************************
+ 
+.temp 25                    * Set operating temp is 25 degrees Celsius
+.param vSupply=1.80			* Nominal supply voltage
+.protect                    * Don't print the contents of library
+*.lib '/auto/home-scf-06/ee577/cad/lib/spice/tsmc025um.spice' TT
+.include tsmc_018.spice
+.unprotect                  * Resume printing SPICE deck
+.param Supply='1.0*vSupply'	* Set characterization voltage
+.param lambda=0.1u			* Set lambda = 0.1 micron
+							* Used for calculating characteristics
+*.opt scale=0.1u             * Set lambda = 0.1 micron
+							* Implied channel length is 2 lambda
+.param minNMOS='4*lambda'	* Width of the minimum NMOS
+.param minPMOS='3*minNMOS'	* Width of the minimum PMOS
+.param slewR = 0.05n		* Slew rate for a transition in the signals
+							
+
+
+* Comment this out if it is not in use
+.param ct = 10n		* cycle time for the pulse source
+.param rt = 0.2n	* rise time for the pulse source
+
+
+
+
+
+
+
+
+*From the MOSIS wafer accpetance test data provided from the DEN
+*web page (MOSIS, 2007), values for capacitance parameters are
+*obtained from the lot average measurements of MOSIS test
+*structures on each wafer of this fabrication lot. These data are
+*provided by MOSIS
+*
+*For the area and fringe capacitance parameters of this lot, the
+*values for connections between metal 2 and metal 4 are:
+*area capacitance, C_{area} = 14 aF/um^2
+*fringe capacitance, C_{fringe} = 35 aF/um
+*
+*
+*Reference: MOSIS [Online], "MOSIS Wafer Acceptance Tests",
+*last viewed on September 23, 2007;
+*Available at https://www.uscden.net/webapps/portal/ ...
+*frameset.jsp?tab=courses&url=/bin/common/ ...
+*course.pl?course_id=_3019_1
+*Or
+*http://www.mosis.com/cgi-bin/params/tsmc-018/ ...
+*t73d_mm_non_epi_thk-params.txt
+*
+* C_{wire}=C_{area}+C_{fringe}
+.param cwire='128*40*lambda*(2*35f/1u+((1u)*4*lambda)*14a/(1u*1u))'
+.param cbl='128*(4*lambda)*2.244f/1u+cwire'
+
+
+
+
+
+
+* Save results of simulation for viewing
+.options post
+
+
+
+* Area of Source (AS) and Drain (AD) diffusion:
+*==>5 lambda * width = 5W lambda^2
+* Perimeter of Source (PS) and Drain (PD) diffusion:
+*==> 2*(5*lambda + width*lambda) = (10 + 2W) * lambda
+* Minimum size transistor: W = 4 * lambda
+* Size of the minimum template inverter (unit-size inverter):
+*==> Wp=12*lambda & Wn=4; Wp and Wn are the widths of the pMOS and nMOS
+*==> transistors
+* Size the gates for equal rise and fall times for pMOS:nMOS of 3:1 in
+* TSMC 0.18 micron technology
+* sweep optimize
+
+
+
+
+***********************************************************************
+* Define power supply
+***********************************************************************
+
+.global Vdd 	Gnd
+Vdd	Vdd	Gnd	'Supply'	* Supply is set by .lib call
+Vgnd Gnd 0 0			* Defining Gnd to be 0V
+
+
+***********************************************************************
+* Define Circuit for SRAM Cell as follows:
+***********************************************************************
+
+
+***********************************************************************
+* Define Subcircuits
+***********************************************************************
+* Subcircuit definition; name of subcircuit; input(s); output(s)
+* Instance Name of Transistor; drain; gate; source; bulk... 
+
+
+***********************************************************************
+* Inverter of M=1
+* \mu=3; AS=AD=5W*\lambda; PS=PD=(10+2*W) \lambda
+.subckt	inv1 In Out
+m1	Out In Gnd Gnd	nfet
++ l='2*lambda'
++ w='minNMOS'
++ ad='5*lambda*minNMOS'
++ as='5*lambda*minNMOS'
++ pd='10*lambda+2*minNMOS'
++ ps='10*lambda+2*minNMOS'
+
+m2	Out In Vdd Vdd	pfet
++ l='2*lambda'
++ w='minPMOS'
++ ad='5*lambda*minPMOS'
++ as='5*lambda*minPMOS'
++ pd='10*lambda+2*minPMOS'
++ ps='10*lambda+2*minPMOS'
+.ends inv1
+
+
+***********************************************************************
+* SRAM cell design
+* \mu=3; AS=AD=5W*\lambda; PS=PD=(10+2*W) \lambda
+* Instance Name of Transistor; drain; gate; source, bulk,...
+.subckt	sram_cell word_line bit bit_bar inter_1 inter_2
+***********************************************************************
+m1	inter_1 inter_2 Gnd Gnd		nfet	l='2*lambda' w='1*minNMOS'
++ ad='5*minNMOS'
++ as='5*minNMOS'
++ pd='10*lambda+2*minNMOS'
++ ps='10*lambda+2*minNMOS'
+
+
+m2	bit word_line inter_1 Gnd	nfet	l='2*lambda' w=minNMOS
++ ad='5*minNMOS'
++ as='5*minNMOS'
++ pd='10*lambda+2*minNMOS'
++ ps='10*lambda+2*minNMOS'
+
+
+m4	inter_2 inter_1 Gnd Gnd		nfet	l='2*lambda' w='1*minNMOS'
++ ad='5*minNMOS'
++ as='5*minNMOS'
++ pd='10*lambda+2*minNMOS'
++ ps='10*lambda+2*minNMOS'
+
+
+m5	inter_2 word_line bit_bar Gnd	nfet	l='2*lambda' w=minNMOS
++ ad='5*minNMOS'
++ as='5*minNMOS'
++ pd='10*lambda+2*minNMOS'
++ ps='10*lambda+2*minNMOS'
+
+
+m3	inter_1 inter_2 Vdd Vdd			pfet	l='2*lambda' w=minPMOS
++ ad='5*minPMOS'
++ as='5*minPMOS'
++ pd='10*lambda+2*minPMOS'
++ ps='10*lambda+2*minPMOS'
+
+m6	inter_2 inter_1 Vdd Vdd	pfet	l='2*lambda' w=minPMOS
++ ad='5*minPMOS'
++ as='5*minPMOS'
++ pd='10*lambda+2*minPMOS'
++ ps='10*lambda+2*minPMOS'
+.ends	sram_cell
+
+* Note that the transistors M1, M3, M4, and M6 have their sources and
+* drains well-defined, since these MOSFETs operate unidirectionally.
+* Thus, they have fixed drains and sources.
+* The transistors M2 and M5 operate bidirectionally, and do not have fixed
+* drains and sources.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+***********************************************************************
+* Sense Amplifier design
+* \mu=3; AS=AD=5W*\lambda; PS=PD=(10+2*W) \lambda
+* Instance Name of Transistor; drain; gate; source, bulk,...
+.subckt	sense_amp bit bit_bar read_en out out_bar
+m0	re read_en Gnd Gnd		nfet	l='2*lambda' w='40*lambda'
++ ad='5*lambda*40*lambda'
++ as='5*lambda*40*lambda'
++ pd='10*lambda+2*40*lambda'
++ ps='10*lambda+2*40*lambda'
+
+m1	out out_bar re Gnd		nfet	l='2*lambda' w='40*lambda'
++ ad='5*lambda*40*lambda'
++ as='5*lambda*40*lambda'
++ pd='10*lambda+2*40*lambda'
++ ps='10*lambda+2*40*lambda'
+
+
+m2	out_bar out re Gnd		nfet	l='2*lambda' w='40*lambda'
++ ad='5*lambda*40*lambda'
++ as='5*lambda*40*lambda'
++ pd='10*lambda+2*40*lambda'
++ ps='10*lambda+2*40*lambda'
+
+
+m3	out out_bar Vdd Vdd		pfet	l='2*lambda' w='width*lambda'
++ ad='5*lambda*width*lambda'
++ as='5*lambda*width*lambda'
++ pd='10*lambda+2*width*lambda'
++ ps='10*lambda+2*width*lambda'
+
+
+m4	out_bar out Vdd Vdd		pfet	l='2*lambda' w='width*lambda'
++ ad='5*lambda*width*lambda'
++ as='5*lambda*width*lambda'
++ pd='10*lambda+2*width*lambda'
++ ps='10*lambda+2*width*lambda'
+
+
+m5	out read_en bit Vdd		pfet	l='2*lambda' w='40*lambda'
++ ad='5*lambda*40*lambda'
++ as='5*lambda*40*lambda'
++ pd='10*lambda+2*40*lambda'
++ ps='10*lambda+2*40*lambda'
+
+m6	out_bar read_en bit_bar Vdd		pfet	l='2*lambda' w='40*lambda'
++ ad='5*lambda*40*lambda'
++ as='5*lambda*40*lambda'
++ pd='10*lambda+2*40*lambda'
++ ps='10*lambda+2*40*lambda'
+
+.ends	sense_amp
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+***********************************************************************
+* Top level simulation netlist
+***********************************************************************
+
+* Subcircuit instance name; input(s); output(s); name of subcircuit;
+* + number of instances of subcircuit
+*c1	Cap	Gnd	'CperMicron*8*(16+32)*0.15u/1u' * linear capacitor
+
+***********************************************************************
+* Engineering Change Order #1: 	Always start subcircuit with an x
+* Engineering Change Order #2: 	Add the expected load to the circuit
+*								Do not change the driving inputs
+***********************************************************************
+
+***********************************************************************
+* The SRAM Cell that is connected to the FO4 driving signal
+* sram_cell word_line bit bit_bar inter_1 inter_2
+x1 bt btb r_en ot otb sense_amp
+
+
+* The FO4 circuit - output buffer - connected to out
+x2 ot f1 inv1
+x3 f1 f2 inv1 M=4
+x4 f2 f3 inv1 M=16
+x10 f3 g1 inv1 M=32
+x11 g1 g2 inv1 M=64
+x12 g2 g3 inv1 M=128
+x13 g3 g4 inv1 M=256
+x14 g4 g5 inv1 M=512
+x15 g5 g6 inv1 M=1024
+
+* The FO4 circuit - output buffer - connected to out_bar
+x5 otb f4 inv1
+x6 f4 f5 inv1 M=4
+x7 f5 f6 inv1 M=16
+x20 f6 h1 inv1 M=32
+x21 h1 h2 inv1 M=64
+x22 h2 h3 inv1 M=128
+x23 h3 h4 inv1 M=256
+x24 h4 h5 inv1 M=512
+x25 h5 h6 inv1 M=1024
+
+
+
+* Connect additional load to the bit and bit_bar lines to model how it
+* drives 256 SRAM Cells
+* Value of C_{b} = C_{bb} = 255*(4*lambda)*C_{diffusion_nmos}; THIS IS WRONG!
+*
+* Definition of the diffusion capacitances for bit and bit_bar,
+* C_{b} = C_{bb} = diffusion capacitance + wire capacitance
+* C_{diffusion}=255*(4*lambda)*2.244f/1u
+* C_{wire}=C_{area}+C_{fringe}
+* 
+*cb bt Gnd '255*(4*lambda)*1.7046f/1u'
+*cbb btb Gnd '255*(4*lambda)*1.7046f/1u+cwire'
+* Include the capacitance of the MUX/DEMUX
+cb bt Gnd 'cbl'
+cbb btb Gnd 'cbl'
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+* Arrays of data that can be enumerated
+.data arrayOfValues
+* Array of values for the widths of M3 and M4 in the sense amplifier
+* that can be swept
+width
+4
+8
+12
+16
+20
+30
+40
+50
+60
+70
+80
+90
+100
+110
+120
+130
+140
+150
+160
+170
+180
+190
+200
+210
+220
+230
+240
+250
+260
+270
+280
+290
+300
+310
+320
+330
+340
+350
+360
+370
+380
+390
+400
+420
+450
+470
+500
+.enddata
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+***********************************************************************
+* Stimuli
+***********************************************************************
+
+* Name of the parameter for slew rate: slewR
+
+* Format of pulse input:
+* pulse v_initial v_final t_delay t_rise t_fall t_pulsewidth t_period
+
+*Vin     In      Gnd     pulse 0 'Supply' 1ns 'rt' 'rt' 'ct/2-rt' 'ct'
+* Always assert word line to be V_{DD} so that a read operation can be
+* performed
+Vre r_en Gnd pwl (0n 0v 5n 0v '5n+slewR' 'Supply' 1000n 'Supply')
+
+
+
+
+
+* Set Initial Conditions to insure no false transitions during 
+* initialization
+.IC V(bt)='Supply-0.15v' V(btb)='Supply'
++ V(ot)='Supply-0.15v' V(otb)='Supply' V(re)='0v'
+
+
+**.IC V(bt)='Supply' V(btb)='Supply'
+**+ V(ot)='Supply' V(otb)=0 
+
+** V(re) should be @ ZERO
+
+***********************************************************************
+* Measurements and Transient Analysis
+***********************************************************************
+
+* Rising delay: Delay from change in input, which causes the output to
+* rise, to the rise (rising change) in the output
+* Falling delay: Delay from change in input, which causes the output to
+* fall, to the fall (falling change) in the output
+
+.measure fallTime
++       TRIG v(i1)  VAL='Supply' FALL=1 
++       TARG v(i1)  VAL='Supply-150m' FALL=1
+
+.tran 0.01ns 6ns sweep data=arrayOfValues
+
+***********************************************************************
+* End of Deck
+***********************************************************************
+
+
+.print V(ot) V(otb) V(bt) V(btb)
+
+.end
+
+  

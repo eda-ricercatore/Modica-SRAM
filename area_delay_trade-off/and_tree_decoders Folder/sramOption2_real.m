@@ -1,0 +1,283 @@
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Matlab file created by Andrew Mattheisen and Zhiyang Ong        %
+% You can contact us at amattheisen@yahoo.com or zhiyang@ieee.org %
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% This matlab file determines the delay of multiple row decoders, %
+% all using 2-4 predecoders and AND trees.                        %
+%                                                                 %
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+disp ('THIS IS OPTION 2_real')
+%
+format long g
+%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% GENERIC PARAMETERS
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+m=10^-3; u=10^-6; n=10^-9; p=10^-12; f=10^-15; a=10^-18;
+%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% TECHNOLOGY SPECIFIC PARAMETERS
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+lambda=.1*u;
+CGate=2.396*f/u; % This is for an inverter gate, assumed to work for 
+                 %   the NMOSgate
+CNDiff=2.244*f/u; % This is for an nmos transistor drain or source
+CPDiff=1.679*f/u; % This is for a pmos transistor drain or source
+REffPmos = 7.8648*10^3*u; % from TA's solution to part 1, problem 1e
+REffNmos = 2.5832*10^3*u; % from TA's solution to part 1, problem 1e
+rsheetm2 = .08; % this is in ohms per square from tech file
+pinv=.5365*10^-10; % as calculated by us
+tao=.1434*10^-10;  % as calculated by us
+%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% CONSTANTS
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Gate capacitance of the inverter in the DFFPOSX1 cell connected to the
+% output
+Cin=4*u*CPDiff+2*u*CNDiff; % this is 1.1204e-14
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+
+%!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+% CIRCUIT SPECIFIC PARAMETERS
+%!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+%!FILL IN SRAM Macro dimentions
+NumCols=128;
+NumRows=256;
+%!
+%!FILL IN LOGICAL EFFORT OF PATH
+G=125/64; 
+%!
+%!FILL IN NUMBER OF STAGES
+N=8;
+%!
+%!FILL IN PARACITIC CAPACITANCE
+P=11;
+%!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Fixed Equations 
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+SideLoadCap=(4*lambda)*(40*lambda)*NumRows*14*a/(u*u) ...    % wire area cap
++ 2*(40*lambda)*NumRows*35*a/u;                          % + wire fringe cap
+%
+WordLineCap=(4*lambda)*(40*lambda)*NumCols*14*a/(u*u) ...   % wire area cap
++ 2*(40*lambda)*NumCols*35*a/u ... %                      + wire fringe cap
++ 2*CGate*NumCols*4*lambda; %                          + SRAM pass gate cap
+%
+% ELECTRICAL EFFORT OF PATH
+H=WordLineCap/Cin; 
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+%! GUESSING - ITERATION
+%!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+%!FILL IN GUESS FOR GATE CAPACITANCE
+%!Cgate_6=#####*f;
+Cgate_5=5*f;
+%!
+%!FILL IN FANOUT OF BRANCH
+%!B=#####*(#####*Cgate_6+SideLoadCap)/Cgate_6;
+B=3*2*(128*Cgate_5+SideLoadCap)/Cgate_5;
+%!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% More Fixed Equations
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% PATH EFFORT
+F=G*H*B;
+%
+%Should determine optimum N first, then set stage effort for that N.
+Nhat=round(log(F)/log(4));
+%Nhat=N;
+%
+% OPTIMAL STAGE EFFORT
+fhat=F^(1/Nhat);
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+%!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+%! Calculate Actual input Capacitances (Cin) for each stage
+%!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+%!FILL IN THIS ENTIRE CIRCUIT
+% Cin = (Cout)*(g_i)/(fhat)
+Cgate_actual(8)=(WordLineCap)*(1)/(fhat);
+if Cgate_actual(8)<3.833*f
+    Cgate_actual(8)=3.833*f;
+end
+Cgate_actual(7)=(Cgate_actual(8))*(5/4)/(fhat);
+if Cgate_actual(7)<3.833*f
+    Cgate_actual(7)=3.833*f;
+end
+Cgate_actual(6)=(Cgate_actual(7))*(1)/(fhat);
+if Cgate_actual(6)<3.833*f
+    Cgate_actual(6)=3.833*f;
+end
+%----------------------------------------------------------------------------%
+Cgate_actual(5)=(Cgate_actual(6))*(5/4)/(fhat); %this is the value of interest
+if Cgate_actual(5)<3.833*f
+    Cgate_actual(5)=3.833*f;
+end
+%----------------------------------------------------------------------------%
+Cgate_actual(4)=(Cgate_actual(5)*128+SideLoadCap)*(1)/(fhat);
+if Cgate_actual(4)<3.833*f
+    Cgate_actual(4)=3.833*f;
+end
+Cgate_actual(3)=(Cgate_actual(4))*(5/4)/(fhat);
+if Cgate_actual(3)<3.833*f
+    Cgate_actual(3)=3.833*f;
+end
+Cgate_actual(2)=(Cgate_actual(3)*2)*(1)/(fhat);
+if Cgate_actual(2)<3.833*f
+    Cgate_actual(2)=3.833*f;
+end
+Cgate_check=(Cgate_actual(2)*3)*(1)/(fhat); % should be about 11fF, 
+                                    %unless an earlier if condition was met
+Cgate_actual(1)=11*f;
+%!
+%!Update P if Nhat is different than N
+P=P+(Nhat-N);
+%!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% More Fixed Equations
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%D=N*F^(1/N)+P;
+%the above equation is not true if the recommended size of a gate is below
+%the minimum possible size
+g=[1,1,5/4,1,5/4,1,5/4,1];
+h=[Cgate_actual(2)*3/Cgate_actual(1), ...
+   Cgate_actual(3)*2/Cgate_actual(2), ...
+   Cgate_actual(4)/Cgate_actual(3), ...
+   (Cgate_actual(5)*128+SideLoadCap)/Cgate_actual(4), ...
+   Cgate_actual(6)/Cgate_actual(5), ...
+   Cgate_actual(7)/Cgate_actual(6), ...
+   Cgate_actual(8)/Cgate_actual(7), ...
+   WordLineCap/Cgate_actual(8)];
+f=[g(1)*h(1), g(2)*h(2), g(3)*h(3), g(4)*h(4), ...
+   g(5)*h(5), g(6)*h(6), g(7)*h(7), g(8)*h(8)];
+D=f(1)+f(2)+f(3)+f(4)+f(5)+f(6)+f(7)+f(8)+P; % in units of tao
+% Delay is the delay in seconds
+Delay=(f(1)+f(2)+f(3)+f(4)+f(5)+f(6)+f(7)+f(8))*tao+P*pinv;
+% this delay assumes a single cap as load
+%
+%I validated that this equation gives the same result for the default gate
+%sizes, now I can constrain gate sizes to alwasy be at least 3.833fF!!!
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+
+%!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+%! model load as a phi model
+%!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+%!determine the size of the resistors in the inverter that drives the load
+%!select the load driving inverter's capacitance
+%!CGate*total_gate_length(#####)=Cgate_actual(#####), therefore
+%!total_gate_length(#####) = Cgate_actual(#####)/Cgate 
+%!(1/4 is NMOS, 3/4 is PMOS)
+GateLength_NMOS=round(10^7*Cgate_actual(8)/CGate*1/4)/10^7;
+GateLength_PMOS=round(10^7*Cgate_actual(8)/CGate*3/4)/10^7; 
+%!note - lengths are rounded to nearest .1 um
+%!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% More Fixed Equations
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%
+R_NMOS=REffNmos/GateLength_NMOS;
+R_PMOS=REffPmos/GateLength_PMOS;
+R_eff=max(R_NMOS,R_PMOS); % this is the higher of the 2 for the worst case
+%
+WL_C1=WordLineCap/2;
+WL_C2=WordLineCap/2;
+%resistance of word line is (length of wl)/(width of wl)*Rsheet
+R_WL=(64*40*lambda)/(4*lambda)*rsheetm2;
+%
+%Use Elmore delay model to get delay of phi model
+WL_PhiDelay=R_eff*WL_C1+(R_eff+R_WL)*WL_C2;
+%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+!!!!!! The following has not been adapted to option 2 yet
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% More Fixed Equations
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%
+R_NMOS_SL=REffNmos/GateLength_NMOS_SL;
+R_PMOS_SL=REffPmos/GateLength_PMOS_SL;
+R_eff_SL=max(R_NMOS_SL,R_PMOS_SL); 
+% this is the higher of the 2 for the worst case
+%
+SL_C1=SideLoadCap/2+Cgate_actual(5)*/2;
+SL_C2=SideLoadCap/2+Cgate_actual(5)*64;
+%resistance of word line is (length of wl)/(width of wl)*Rsheet
+SL_R=(512*40*lambda)/(4*lambda)*(rsheetm1);
+%
+%Use Elmore delay model to get delay of pi model
+SL_PiDelay=R_eff_SL*SL_C1+(R_eff_SL+SL_R)*SL_C2
+
+% (F)^(1/N)*N*tao+P*pinv
+% F=G1*B1*H1 ; G1=3/2, B1=5*4=20, H1=1/2ofSideloadCapacitance
+% therfore H1=.5*SideLoadCap+.5*64*Cgate_actual(5)
+% P1=5 ; N=4
+
+Delay_Gates1=((3/2)*((.5*SideLoadCap+.5*64*Cgate_actual(5))/(11*10^-15))*20)^(1/4)*4*tao+5*pinv;
+temp1=((3/2)*(.5*SideLoadCap+.5*64*Cgate_actual(5))*20)^(1/4)*4*tao
+temp2=5*pinv
+% G2=3/2, B2=1,H2=1/2*WordLineCap/Cgate_actual(5)
+% P1=3 ; N=2
+
+Delay_Gates2=((3/2)*(1/2*WordLineCap/Cgate_actual(5))*1)^(1/2)*2*tao+3*pinv;
+TOTALDELAY=Delay_Gates1 + SL_PiDelay + Delay_Gates2 + WL_PiDelay;
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Print results to the prompt
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+disp('--------------------------------------------------------------')
+disp ('Results')
+disp('--------------------------------------------------------------')
+            N; %= 8
+disp (' ')
+            Nhat %= 8
+disp (' ')
+            F; %= 42629
+disp (' ')
+            fhat; %=3.79
+disp (' ')
+            Cgate_actual; %= (see next lines)
+%[1.100e-14      2.607e-14      4.941e-14      1.498e-13
+% 3.833e-15      6.518e-15      2.471e-14      7.493e-14]
+disp (' ')
+            D; %=42.98
+disp (' ')
+            Delay 
+            
+disp('--------------------------------------------------------------')
+disp('Total delay using pi models for C_SL and C_WL')
+disp('--------------------------------------------------------------')
+            TOTALDELAY           
+            
+disp('--------------------------------------------------------------')
+disp('Details of calculation of total delay for pi model')
+disp('--------------------------------------------------------------')
+            Delay_Gates1
+            SL_PiDelay
+            Delay_Gates2
+            WL_PiDelay 
+            TOTALDELAY       
+%disp (' ')
+%disp('--------------------------------------------------------------')
+%disp ('Error')
+%disp('--------------------------------------------------------------')
+Guess_was=Cgate_5; %= 5e-15
+Result_was=Cgate_actual(5); %= 3.833e-15
+Error=Cgate_5-Cgate_actual(5); %= 1.67e-15
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%

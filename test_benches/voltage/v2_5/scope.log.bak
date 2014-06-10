@@ -1,0 +1,71 @@
+wm geometry .sigmgr 376x200+465+974
+pf:read PF:1 {clk}
+# WF:1:11
+Graph addsignal WF:1:11 -region d -yview real(y) -xview real(x) -tracehi 1
+# Signal79
+Graph:DSel
+Graph:Select Graph0
+Graph axisconfig AxisX(0) -range all -zoomed 0
+Graph:DSel
+wm geometry .sigmgr._PF:1 380x786+898+163
+wm geometry .sigmgr._PF:1 380x786+887+163
+wm geometry .sigmgr._PF:1 380x786+870+163
+wm geometry .sigmgr._PF:1 380x786+860+163
+wm geometry .sigmgr._PF:1 380x786+838+164
+wm geometry .sigmgr._PF:1 380x786+788+164
+wm geometry .sigmgr._PF:1 380x786+776+164
+wm geometry .sigmgr._PF:1 380x786+728+164
+wm geometry .sigmgr._PF:1 380x786+711+163
+wm geometry .sigmgr._PF:1 380x786+706+163
+wm geometry .sigmgr._PF:1 380x786+703+163
+Mdi:Close
+ScopeSigMgr:loadpffile /auto/home-scf-07/zhiyango/andy_stuff/final/voltage/v1.8/result/testbench128x256.fsdb 1 openonly
+# PF:5
+GrXY:NewGraph
+# Graph1
+pf:read PF:5 {clk}
+# WF:5:1
+Graph addsignal WF:5:1 -region d -yview real(y) -xview real(x) -tracehi 1
+# Signal0
+Mdi:FullSize
+Graph axisconfig AxisX(0) -range {26.4n 52.8n }
+Graph axisconfig AxisX(0) -range {34.9n 44.8n }
+wm geometry .sigmgr._PF:1 380x786+823+163
+wm geometry .sigmgr._PF:1 380x786+885+163
+wm geometry .sigmgr._PF:1 380x786+899+163
+wm geometry .sigmgr._PF:1 380x786+912+163
+wm geometry .sigmgr._PF:1 380x786+916+163
+wm geometry .sigmgr._PF:1 380x786+917+163
+wm geometry .sigmgr._PF:1 380x786+919+163
+wm geometry .sigmgr._PF:1 380x786+919+162
+wm geometry .sigmgr._PF:1 380x786+909+162
+wm geometry .sigmgr._PF:1 380x786+905+162
+wm geometry .sigmgr._PF:1 380x786+896+162
+wm geometry .sigmgr._PF:1 380x786+894+162
+wm geometry .sigmgr._PF:1 380x786+892+162
+wm geometry .sigmgr._PF:1 380x786+889+162
+wm geometry .sigmgr._PF:1 380x786+886+162
+wm geometry .sigmgr._PF:1 380x786+882+162
+wm geometry .sigmgr._PF:1 380x786+881+162
+wm geometry .sigmgr._PF:1 380x786+879+163
+wm geometry .sigmgr._PF:1 380x786+877+163
+wm geometry .sigmgr._PF:1 380x786+876+164
+wm geometry .sigmgr._PF:1 380x786+874+164
+wm geometry .sigmgr._PF:1 380x786+873+164
+wm geometry .sigmgr._PF:1 380x786+873+165
+Graph axisconfig AxisX(0) -range all -zoomed 0
+Graph axisconfig AxisX(0) -range all -zoomed 0
+Graph axisconfig AxisX(0) -range {26.4n 52.8n }
+Graph:Select Graph1
+Graph:DSel
+Graph itemselect AxisX(0) add
+# AxisX(0)
+Graph axisconfig AxisX(0) -range {10n 40n exact}
+Graph axisconfig AxisX(0) -range {-5n 25n exact}
+Graph axisconfig AxisX(0) -range {-20n 10n exact}
+Graph axisconfig AxisX(0) -range {-35n -5n exact}
+Graph axisconfig AxisX(0) -range {-20n 10n exact}
+Graph axisconfig AxisX(0) -range {-5n 25n exact}
+Graph axisconfig AxisX(0) -range {10n 40n exact}
+Graph axisconfig AxisX(0) -range {-5n 25n exact}
+ScopeSigMgr:Unload 0 {{(1) testbench128x256.fsdb}}

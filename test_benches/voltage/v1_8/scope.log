@@ -1,0 +1,5 @@
+wm geometry .sigmgr 376x200+465+974
+Mdi:Close
+ScopeSigMgr:Unload 0 {{(1) testbench128x256.fsdb}}
+ScopeSigMgr:loadpffile /auto/home-scf-07/zhiyango/andy_stuff/final/voltage/v1.8/result/testbench128x256.fsdb 1 openonly
+# PF:5

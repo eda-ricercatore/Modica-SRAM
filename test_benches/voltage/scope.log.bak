@@ -1,0 +1,5 @@
+wm geometry .sigmgr 376x200+10+365
+Graph axisconfig {AxisX(0) AxisY(0,0) AxisY(1,0) AxisY(2,0) AxisY(3,0) AxisY(4,0)} -range {all all all all all all} -zoomed {0 0 0 0 0 0}
+Graph:DSel
+Graph:Select Graph0
+Graph:SaveGraph Graph0 /home/scf-08/mattheis/ee577b/workingdir/.scopecfg_data/Graph0 0

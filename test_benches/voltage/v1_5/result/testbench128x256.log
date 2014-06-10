@@ -1,0 +1,557 @@
+ --------------------------------------------------------
+|                                                        |
+|               NanoSim Version Y-2006.06                |
+|                 SN: P20060518-SunOS_5                  |
+|            Machine Name: sal-sun061.usc.edu            |
+| Copyright (c) 2006 Synopsys Inc., All Rights Reserved. |
+|                                                        |
+ --------------------------------------------------------
+
+Built by nsmgr in " 20060518_sparcOS5_p4_y2006.06_ns " on Thu May 18 22:17:23 PDT 2006
+Thu Oct 25 17:00:43 2007
+
+Command line options:  -nspice testbench128x256.cir -nvec testbench128x256.vec -C testbench128x256.cfg -o result/testbench128x256
+
+
+The 32-bit version of the simulator is running.
+
+
+Initializing system messages took 0.040 s
+
+Installing interactive/configuration commands ... 
+Installing commands took 0.100 s
+
+
+Start netlist compilation at Thu Oct 25 17:00:44 2007
+
+Compiling "testbench128x256.cir" (SPICE)
+Compiling "tsmc_018.spice" (SPICE)
+Compiling "testbench128x256.spice" (SPICE)
+Compiling "/auto/home-scf-06/ee577/design_pdk/ncsu-cdk-1.5.1/models/hspice/public/publicModel/tsmc20P" (SPICE)
+Compiling "/auto/home-scf-06/ee577/design_pdk/ncsu-cdk-1.5.1/models/hspice/public/publicModel/tsmc20N" (SPICE)
+Compiling "testbench128x256.vec" (VECTOR)
+
+
+
+Parsing netlist finished in 1 seconds
+
+Circuit temperature from netlist                  :       25.000
+
+
+Netlist compilation will be case insensitive.
+All letters will be converted to lower case.
+Building instance tree finished in 2 seconds
+
+Finish netlist compilation at Thu Oct 25 17:00:47 2007
+
+Netlist compilation took 2.100 s
+NOTICE:Techfile Voltage (*nanosim tech="voltage") set to  1.5V ... 
+
+This simulation uses HSPICE models
+
+WARNING:NanoSim:0x2110426e:Hspice vector read: invalid command, ignored, in "testbench128x256.vec:1". 
+WARNING:NanoSim:0x2110426e:Hspice vector read: invalid command, ignored, in "testbench128x256.vec:2". 
+WARNING:NanoSim:0x2110426e:Hspice vector read: invalid command, ignored, in "testbench128x256.vec:4". 
+WARNING:NanoSim:0x2110426e:Hspice vector read: invalid command, ignored, in "testbench128x256.vec:10". 
+Building node/element arrays took 13.540 s
+
+Reading configuration files ...
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+; General Configuration Settings
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+
+; set simulation accuracy switches here - Default is (2,2,2)
+set_sim_eou sim=2 model=2 net=2
+
+; change the unit used for inputs and outputs
+set_sim_unit output time=1ns cap=1fF current=1mA length=1um
+
+; set output format for the waveform output file - "fsdb" for CosmosScope
+; without this command, nanosim will generate .out file
+set_print_format for=fsdb
+
+; set the specified node to vdd/gnd for the entire simulation
+set_node_vdd VDD!
+
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+; User-specific Settings
+; => modify the following lines as you need
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+
+; print a node's voltage waveform to the output file
+; also can access internal nodes
+; e.g. print_node_v XI0.XI9.NET037
+
+;inputs in top cell
+print_node_v CLK
+print_node_v WRITE_EN
+print_node_v read_EN
+print_node_v pre
+print_node_v word_en_real
+print_node_v read_en_real
+print_node_v pre_real
+print_node_v write_en_real
+
+
+print_node_v col_0
+print_node_v col_4
+
+print_node_v WL_0
+print_node_v WL_1
+print_node_v WL_B_0
+print_node_v WL_B_1
+print_node_v WL_A_0
+print_node_v WL_A_1
+
+;outputs in top cell
+print_node_v BIT_0
+print_node_v BIT_1
+print_node_v BIT_2
+print_node_v BIT_3
+
+print_node_v BIT_B_0
+print_node_v BIT_B_1
+print_node_v BIT_B_2
+print_node_v BIT_B_3
+
+;nodes in the sram cell
+;print_node_v XI41.XI0.XI1.BIT_STORED
+;print_node_v XI41.XI0.XI2.BIT_STORED
+;print_node_v XI41.XI0.XI3.BIT_STORED
+;print_node_v XI41.XI0.XI4.BIT_STORED
+;print_node_v XI41.XI0.XI5.BIT_STORED
+;print_node_v XI41.XI0.XI6.BIT_STORED
+;print_node_v XI41.XI0.XI7.BIT_STORED
+;print_node_v XI41.XI0.XI8.BIT_STORED
+;print_node_v XI41.XI0.XI9.BIT_STORED
+;print_node_v XI41.XI0.XI10.BIT_STORED
+;print_node_v XI41.XI0.XI11.BIT_STORED
+;print_node_v XI41.XI0.XI12.BIT_STORED
+;print_node_v XI41.XI0.XI13.BIT_STORED
+;print_node_v XI41.XI0.XI14.BIT_STORED
+;print_node_v XI41.XI0.XI15.BIT_STORED
+;print_node_v XI41.XI0.XI16.BIT_STORED
+;print_node_v XI41.XI0.XI17.BIT_STORED
+;print_node_v XI41.XI0.XI18.BIT_STORED
+;print_node_v XI41.XI0.XI19.BIT_STORED
+;print_node_v XI41.XI0.XI20.BIT_STORED
+;print_node_v XI41.XI0.XI21.BIT_STORED
+;print_node_v XI41.XI0.XI22.BIT_STORED
+;print_node_v XI41.XI0.XI23.BIT_STORED
+;print_node_v XI41.XI0.XI24.BIT_STORED
+;print_node_v XI41.XI0.XI25.BIT_STORED
+;print_node_v XI41.XI0.XI26.BIT_STORED
+;print_node_v XI41.XI0.XI27.BIT_STORED
+;print_node_v XI41.XI0.XI28.BIT_STORED
+;print_node_v XI41.XI0.XI29.BIT_STORED
+;print_node_v XI41.XI0.XI30.BIT_STORED
+;print_node_v XI41.XI0.XI31.BIT_STORED
+;print_node_v XI41.XI0.XI32.BIT_STORED
+
+;print_node_v XI41.XI0.XI1.BIT_BAR_STORED
+;print_node_v XI41.XI0.XI2.BIT_BAR_STORED
+;print_node_v XI41.XI0.XI3.BIT_BAR_STORED
+;print_node_v XI41.XI0.XI4.BIT_BAR_STORED
+;print_node_v XI41.XI0.XI5.BIT_BAR_STORED
+;print_node_v XI41.XI0.XI6.BIT_BAR_STORED
+;print_node_v XI41.XI0.XI7.BIT_BAR_STORED
+;print_node_v XI41.XI0.XI8.BIT_BAR_STORED
+;print_node_v XI41.XI0.XI9.BIT_BAR_STORED
+;print_node_v XI41.XI0.XI10.BIT_BAR_STORED
+;print_node_v XI41.XI0.XI11.BIT_BAR_STORED
+;print_node_v XI41.XI0.XI12.BIT_BAR_STORED
+;print_node_v XI41.XI0.XI13.BIT_BAR_STORED
+;print_node_v XI41.XI0.XI14.BIT_BAR_STORED
+;print_node_v XI41.XI0.XI15.BIT_BAR_STORED
+;print_node_v XI41.XI0.XI16.BIT_BAR_STORED
+;print_node_v XI41.XI0.XI17.BIT_BAR_STORED
+;print_node_v XI41.XI0.XI18.BIT_BAR_STORED
+;print_node_v XI41.XI0.XI19.BIT_BAR_STORED
+;print_node_v XI41.XI0.XI20.BIT_BAR_STORED
+;print_node_v XI41.XI0.XI21.BIT_BAR_STORED
+;print_node_v XI41.XI0.XI22.BIT_BAR_STORED
+;print_node_v XI41.XI0.XI23.BIT_BAR_STORED
+;print_node_v XI41.XI0.XI24.BIT_BAR_STORED
+;print_node_v XI41.XI0.XI25.BIT_BAR_STORED
+;print_node_v XI41.XI0.XI26.BIT_BAR_STORED
+;print_node_v XI41.XI0.XI27.BIT_BAR_STORED
+;print_node_v XI41.XI0.XI28.BIT_BAR_STORED
+;print_node_v XI41.XI0.XI29.BIT_BAR_STORED
+;print_node_v XI41.XI0.XI30.BIT_BAR_STORED
+;print_node_v XI41.XI0.XI31.BIT_BAR_STORED
+;print_node_v XI41.XI0.XI32.BIT_BAR_STORED
+
+;nodes in the Sense amp
+
+;print_node_v XI1.XI0.OUT
+;print_node_v XI1.XI1.OUT
+;print_node_v XI1.XI2.OUT
+;print_node_v XI1.XI3.OUT
+;print_node_v XI1.XI4.OUT
+;print_node_v XI1.XI5.OUT
+;print_node_v XI1.XI6.OUT
+;print_node_v XI1.XI7.OUT
+;print_node_v XI1.XI8.OUT
+;print_node_v XI1.XI9.OUT
+;print_node_v XI1.XI10.OUT
+;print_node_v XI1.XI11.OUT
+;print_node_v XI1.XI12.OUT
+;print_node_v XI1.XI13.OUT
+;print_node_v XI1.XI14.OUT
+;print_node_v XI1.XI15.OUT
+;print_node_v XI1.XI16.OUT
+;print_node_v XI1.XI17.OUT
+;print_node_v XI1.XI18.OUT
+;print_node_v XI1.XI19.OUT
+;print_node_v XI1.XI20.OUT
+;print_node_v XI1.XI21.OUT
+;print_node_v XI1.XI22.OUT
+;print_node_v XI1.XI23.OUT
+;print_node_v XI1.XI24.OUT
+;print_node_v XI1.XI25.OUT
+;print_node_v XI1.XI26.OUT
+;print_node_v XI1.XI27.OUT
+;print_node_v XI1.XI28.OUT
+;print_node_v XI1.XI29.OUT
+;print_node_v XI1.XI30.OUT
+;print_node_v XI1.XI31.OUT
+
+
+;print_node_v XI1.XI0.OUT_BAR
+;print_node_v XI1.XI1.OUT_BAR
+;print_node_v XI1.XI2.OUT_BAR
+;print_node_v XI1.XI3.OUT_BAR
+;print_node_v XI1.XI4.OUT_BAR
+;print_node_v XI1.XI5.OUT_BAR
+;print_node_v XI1.XI6.OUT_BAR
+;print_node_v XI1.XI7.OUT_BAR
+;print_node_v XI1.XI8.OUT_BAR
+;print_node_v XI1.XI9.OUT_BAR
+;print_node_v XI1.XI10.OUT_BAR
+;print_node_v XI1.XI11.OUT_BAR
+;print_node_v XI1.XI12.OUT_BAR
+;print_node_v XI1.XI13.OUT_BAR
+;print_node_v XI1.XI14.OUT_BAR
+;print_node_v XI1.XI15.OUT_BAR
+;print_node_v XI1.XI16.OUT_BAR
+;print_node_v XI1.XI17.OUT_BAR
+;print_node_v XI1.XI18.OUT_BAR
+;print_node_v XI1.XI19.OUT_BAR
+;print_node_v XI1.XI20.OUT_BAR
+;print_node_v XI1.XI21.OUT_BAR
+;print_node_v XI1.XI22.OUT_BAR
+;print_node_v XI1.XI23.OUT_BAR
+;print_node_v XI1.XI24.OUT_BAR
+;print_node_v XI1.XI25.OUT_BAR
+;print_node_v XI1.XI26.OUT_BAR
+;print_node_v XI1.XI27.OUT_BAR
+;print_node_v XI1.XI28.OUT_BAR
+;print_node_v XI1.XI29.OUT_BAR
+;print_node_v XI1.XI30.OUT_BAR
+;print_node_v XI1.XI31.OUT_BAR
+
+; print the logic values of specified nodes to the output file
+print_node_logic *
+
+
+
+
+
+; Report results from power analysis
+report_node_powr
+; Set things up, just like in the Nanosim User Guide from Synopsys
+;tv_node_setup s* - clk rise 0.5n window=3n
+;set_print_iwindow 10n 800n
+
+
+
+
+
+
+; Perform power analysis of the VLSI system
+;;;;;;;;;;report_block_powr pa_sram track_wasted=1 track_power=1 XISRAMCELL0
+report_block_powr pa_sram track_wasted=1 track_power=1 *.*
+;SRAM_CELL_G4
+
+
+
+
+
+Reading configuration files took 0.790000 s
+
+WARNING:NanoSim:0x211080eb:print_node_v: UNABLE TO FIND NODE "read_en".  
+WARNING:NanoSim:0x211080eb:print_node_v: UNABLE TO FIND NODE "pre".  
+
+
+WARNING:NanoSim:0x21108fb7:Pulse source vclk had rise/fall time smaller than simulation time resolution (tres). rise/fall time adjusted to tres. 
+Warning: report_block_powr need information from circuit data base. Database is not freed.WARNING:NanoSim:0x2110925a:There are 1 DANGLING nodes. Please view the file result/testbench128x256.dng for the node names 
+
+# of CMOS elements                                        :       204373
+# of resistors                                            :         1261
+# of independent sources                                  :            1
+# of stimulus elements                                    :            1
+# of elements                                             :       205636
+# of used elements                                        :       205636
+# of nodes                                                :        70791
+# of subckt                                               :           56
+# of top-level instances                                  :           56
+# of capacitors from netlist                              :         2522
+     # of Ground CAPS from netlist                        :         2522
+     # of Coupling CAPS from netlist                      :            0
+
+
+Circuit partitioning ...
+
+Among 1127 stages, there are: 
+        1126 pwl stages 
+           0 grouped pwl stages
+           1 analog stages 
+           0 NR stages 
+           0 grouped analog stages
+           0 rc stages 
+           0 ud stages 
+           0 ADFMI functional model stages
+        2105 nodes in the largest pwl stage
+           0 nodes in the largest digital stage
+
+        1092 stages (1092 pwl/analog stages) with 0-9 nodes
+           2 stages (2 pwl/analog stages) with 100-149 nodes
+           1 stages (1 PWL stages) with 350-399 nodes
+          32 stages (32 PWL stages) with 2100-2149 nodes
+
+
+Among 70791 nodes, there are: 
+       70787 pwl nodes
+           4 analog (accurate) nodes
+           0 rc nodes
+           0 ud nodes
+
+           0 cut nodes 
+           0 mem_cut nodes 
+         388 no_clamp nodes 
+       70742 nodes in stages
+           5 voltage source nodes
+           4 constant nodes
+           0 NR nodes
+
+Among 205636 elements, there are: 
+      205634 elements in stages
+      205633 pwl elements 
+           0 synchronous elements 
+           0 SMS elements 
+           1 analog (accurate) elements
+           0 rc elements 
+           0 ud elements 
+           0 ADFMI functional model elements 
+           0 VERILOGA model elements 
+           0 behavioral model elements 
+
+           0 mna elements
+           0 NR elements
+           0 mos transistors identified as keepers
+        4656 mos transistors need Subthreshold current
+           0 keepers removed
+           0 keepers reduced
+
+
+Circuit partitioning took 4.650 s
+Constructing matrix ...
+Matrix ordering and construction took 0.970 s
+Profiling block-number for individual report_block_powr configuration commands (1 cmd's totally)  
+Cmd 1: 1 blocks from "report_block_powr pa_sram track_wasted=1 track_power=1 *.* "   
+Processing block power (number of blocks: 1) ...  
+
+
+After reading configuration file(s), 70846 signals are identified to be printed:
+       70791 logic signals
+          22 voltage signals
+          33 node current signals, including:
+                11 node inst. current signals
+                11 node RMS current signals
+                11 node AVG current signals
+
+Statistics of memory used for signal printing:
+     4924472 bytes allocated in total, including:
+           3408568 bytes allocated for node current/voltage/logic signals
+              1364 bytes allocated additionally for current printing
+            230900 bytes allocated additionally for node current signals
+           1283640 bytes allocated additionally for element branch current signals
+
+Levelizing stages ...
+Levelizing stages took 0.100 s
+DC initialization ...
+WARNING:NanoSim:0x2110e4b1:There are 1 DANGLING nodes which have been set to 0.0 volt by the simulator before DC initialization. Please view the file result/testbench128x256.dcu for the node names. 
+
+Finishing initialization (level 0 -- 31)
+35 dynamic stages assigned in DC Initialization
+
+Number of residual dc events scheduled          : 0
+Number of ic nodes scheduled                    : 1
+DC initialization took 1.540 s
+
+Simulation begins in pwl mode ...
+Simulation ends at 120.000 ns
+
+Simulation took 44.840 s
+
+Current information calculated over the intervals:
+
+     0.00000e+00 -  1.20010e+02 ns
+
+Node: VDD!
+    Average current	:  0.00000e+00 mA
+    RMS current		:  0.00000e+00 mA
+
+    No current peaks noted.
+
+Node: 0
+    Average current	:  1.27291e+01 mA
+    RMS current		:  2.06571e+01 mA
+
+    Current peak #1	:  1.79815e+02 mA  at   5.60700e+01 ns
+    Current peak #2	:  1.79724e+02 mA  at   6.19700e+01 ns
+    Current peak #3	:  1.79537e+02 mA  at   2.06600e+01 ns
+    Current peak #4	:  1.79448e+02 mA  at   1.15090e+02 ns
+    Current peak #5	:  1.79305e+02 mA  at   7.96800e+01 ns
+
+Node: gnd
+    Average current	:  0.00000e+00 mA
+    RMS current		:  0.00000e+00 mA
+
+    No current peaks noted.
+
+Node: vdd!
+    Average current	: -1.19759e+01 mA
+    RMS current		:  2.26864e+01 mA
+
+    Current peak #1	: -2.94905e+02 mA  at   5.91000e+00 ns
+    Current peak #2	: -2.74739e+02 mA  at   6.49300e+01 ns
+    Current peak #3	: -2.74130e+02 mA  at   9.44400e+01 ns
+    Current peak #4	: -2.74030e+02 mA  at   2.95200e+01 ns
+    Current peak #5	: -2.73964e+02 mA  at   3.54200e+01 ns
+
+Node: pa_sram.total_src
+    Average current	: -1.19759e+01 mA
+    RMS current		:  2.26864e+01 mA
+
+    Current peak #1	: -2.94905e+02 mA  at   5.91000e+00 ns
+    Current peak #2	: -2.74739e+02 mA  at   6.49300e+01 ns
+    Current peak #3	: -2.74130e+02 mA  at   9.44400e+01 ns
+    Current peak #4	: -2.74030e+02 mA  at   2.95200e+01 ns
+    Current peak #5	: -2.73964e+02 mA  at   3.54200e+01 ns
+
+Node: pa_sram.total_input
+    Average current	:  8.41597e-05 mA
+    RMS current		:  4.58206e-02 mA
+
+    Current peak #1	:  9.09000e-01 mA  at   1.28000e+01 ns
+    Current peak #2	: -8.08000e-01 mA  at   6.90000e+00 ns
+    Current peak #3	: -8.08000e-01 mA  at   3.05000e+01 ns
+    Current peak #4	:  6.06000e-01 mA  at   2.46000e+01 ns
+    Current peak #5	:  1.01000e-01 mA  at   3.64000e+01 ns
+
+Node: pa_sram.total_output
+    Average current	:  0.00000e+00 mA
+    RMS current		:  0.00000e+00 mA
+
+    No current peaks noted.
+
+Node: pa_sram.total_biput
+    Average current	: -7.58744e-01 mA
+    RMS current		:  2.34485e+01 mA
+
+    Current peak #1	: -4.43792e+02 mA  at   2.95000e+00 ns
+    Current peak #2	: -4.43792e+02 mA  at   2.06600e+01 ns
+    Current peak #3	: -4.43792e+02 mA  at   2.65600e+01 ns
+    Current peak #4	: -4.43792e+02 mA  at   3.24600e+01 ns
+    Current peak #5	: -4.43792e+02 mA  at   5.01700e+01 ns
+
+Node: pa_sram.total_cap
+    Average current	: -9.29746e+00 mA
+    RMS current		:  1.59105e+01 mA
+
+    Current peak #1	: -1.16446e+02 mA  at   5.92000e+00 ns
+    Current peak #2	: -8.69120e+01 mA  at   9.44500e+01 ns
+    Current peak #3	: -8.68190e+01 mA  at   6.49400e+01 ns
+    Current peak #4	: -8.65290e+01 mA  at   3.54300e+01 ns
+    Current peak #5	: -8.57480e+01 mA  at   3.41000e+00 ns
+
+Node: pa_sram.total_wasted
+    Average current	: -3.49202e+00 mA
+    RMS current		:  7.90541e+00 mA
+
+    Current peak #1	: -3.67890e+01 mA  at   3.49200e+01 ns
+    Current peak #2	: -3.66560e+01 mA  at   4.08200e+01 ns
+    Current peak #3	: -3.59400e+01 mA  at   1.13500e+01 ns
+    Current peak #4	: -3.39430e+01 mA  at   3.90500e+01 ns
+    Current peak #5	: -3.22780e+01 mA  at   2.90300e+01 ns
+
+Node: pa_sram.total_power
+    Average power	:  1.91006e+01 mW
+    RMS power		:  2.99042e+01 mW
+
+    Power peak #1	:  4.42357e+02 mW  at   5.92000e+00 ns
+    Power peak #2	:  4.12109e+02 mW  at   6.49400e+01 ns
+    Power peak #3	:  4.11195e+02 mW  at   9.44500e+01 ns
+    Power peak #4	:  4.11045e+02 mW  at   2.95300e+01 ns
+    Power peak #5	:  4.10946e+02 mW  at   3.54300e+01 ns
+
+
+Block: pa_sram
+    Number of nodes in block		:  70743
+    Number of elements in block		:  205634
+    Number of block supply nodes	:  1
+    Number of block ground nodes	:  1
+    Number of block biput nodes		:  1
+    Number of block input nodes		:  43
+    Number of block output nodes	:  0
+    Number of block stages		:  1127
+    Number of block partial stages	:  0
+
+    Average supply current		: -11.975862 mA
+    RMS supply current			:  22.686409 mA
+
+    Average input current		:  0.000084 mA
+    RMS input current			:  0.045821 mA
+
+    Average output current		:  0.000000 mA
+    RMS output current			:  0.000000 mA
+
+    Average biput current		: -0.758744 mA
+    RMS biput current			:  23.448480 mA
+
+    Average capacitive current		: -9.297465 mA
+    RMS capacitive current		:  15.910494 mA
+
+    Average wasted current		: -3.492015 mA
+    RMS wasted current			:  7.905410 mA
+
+    Wasted current percentage		:  27.303809%
+
+    Average block power			:  19.100571 mW
+    RMS block power			:  29.904217 mW
+
+Simulation time resolution                      : 1.000e-02 ns
+Print time resolution                           : 1.000e-02 ns
+Number of PWL matrix solutions                  : 428476
+Number of PWL MOS model lookups                 : 1711736
+Number of time steps                            : 428476
+Number of iterations                            : 0
+Number of rejected time steps                   : 972
+
+Global simulation parameters used:
+
+SPD            0.15V     ASPD          0.075V
+SIM_DESV       0.15V     SIM_AESV      0.075V
+VDS_MIN  8.13101e-06V     AVDS_MIN      1e-08V
+SSC (steady state current)      0.0001mA
+SUBI (subthreshold current)      0.001mA
+DC CURRENT                       0.001mA
+
+	      97.0 real	      84.5 user	       2.6 sys
+
+Signal data is saved in result/testbench128x256.fsdb
+
+No errors reported in the .err file (result/testbench128x256.err)
+

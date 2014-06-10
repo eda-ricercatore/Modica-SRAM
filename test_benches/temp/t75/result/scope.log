@@ -1,0 +1,457 @@
+Mdi:Close
+ScopeSigMgr:loadpffile /auto/home-scf-07/zhiyango/andy_stuff/final/temp/t50/result/testbench128x256.fsdb 1 openonly
+# PF:1
+Mdi:ArrangeIcons
+wm geometry . 1265x913+2+26
+wm geometry .sigmgr._PF:1 208x311+641+512
+wm geometry .sigmgr._PF:1 208x311+659+486
+wm geometry .sigmgr._PF:1 208x311+681+460
+wm geometry .sigmgr._PF:1 208x311+705+432
+wm geometry .sigmgr._PF:1 208x311+777+316
+wm geometry .sigmgr._PF:1 208x311+829+234
+wm geometry .sigmgr._PF:1 208x311+853+194
+wm geometry .sigmgr._PF:1 208x311+895+83
+wm geometry .sigmgr._PF:1 208x311+897+76
+wm geometry .sigmgr._PF:1 208x311+906+63
+wm geometry .sigmgr._PF:1 208x311+909+60
+wm geometry .sigmgr._PF:1 208x311+913+55
+wm geometry .sigmgr._PF:1 208x311+915+54
+wm geometry .sigmgr._PF:1 208x311+919+51
+wm geometry .sigmgr._PF:1 208x311+921+50
+wm geometry .sigmgr._PF:1 208x311+925+46
+wm geometry .sigmgr._PF:1 208x311+927+44
+wm geometry .sigmgr._PF:1 208x311+929+43
+wm geometry .sigmgr._PF:1 208x311+934+40
+wm geometry .sigmgr._PF:1 208x311+939+37
+wm geometry .sigmgr._PF:1 208x311+943+35
+wm geometry .sigmgr._PF:1 208x311+945+35
+wm geometry .sigmgr._PF:1 208x311+947+34
+wm geometry .sigmgr._PF:1 208x311+951+32
+wm geometry .sigmgr._PF:1 208x311+955+31
+wm geometry .sigmgr._PF:1 208x311+956+29
+wm geometry .sigmgr._PF:1 208x311+960+27
+wm geometry .sigmgr._PF:1 208x311+962+26
+wm geometry .sigmgr._PF:1 208x311+963+26
+wm geometry .sigmgr._PF:1 208x311+966+26
+wm geometry .sigmgr._PF:1 208x311+967+26
+wm geometry .sigmgr._PF:1 208x311+971+26
+wm geometry .sigmgr._PF:1 208x311+972+26
+wm geometry .sigmgr._PF:1 208x311+986+26
+wm geometry .sigmgr._PF:1 208x311+989+26
+wm geometry .sigmgr._PF:1 208x311+990+26
+wm geometry .sigmgr._PF:1 208x311+991+26
+wm geometry .sigmgr._PF:1 208x311+993+26
+wm geometry .sigmgr._PF:1 208x311+994+26
+wm geometry .sigmgr._PF:1 208x311+995+26
+wm geometry .sigmgr._PF:1 208x311+996+26
+wm geometry .sigmgr._PF:1 208x311+997+26
+wm geometry .sigmgr._PF:1 208x311+998+26
+wm geometry .sigmgr._PF:1 208x311+1000+26
+wm geometry .sigmgr._PF:1 208x311+1001+26
+wm geometry .sigmgr._PF:1 208x311+1005+26
+wm geometry .sigmgr._PF:1 208x311+1006+26
+wm geometry .sigmgr._PF:1 208x311+1009+26
+wm geometry .sigmgr._PF:1 208x311+1010+26
+wm geometry .sigmgr._PF:1 208x311+1014+26
+wm geometry .sigmgr._PF:1 208x311+1018+26
+wm geometry .sigmgr._PF:1 208x311+1019+26
+wm geometry .sigmgr._PF:1 208x311+1021+26
+wm geometry .sigmgr._PF:1 208x311+1022+26
+wm geometry .sigmgr._PF:1 208x311+1023+26
+wm geometry .sigmgr._PF:1 208x311+1024+26
+wm geometry .sigmgr._PF:1 208x311+1025+26
+wm geometry .sigmgr._PF:1 208x311+1026+26
+wm geometry .sigmgr._PF:1 208x311+1027+26
+wm geometry .sigmgr._PF:1 208x311+1029+26
+wm geometry .sigmgr._PF:1 208x311+1030+26
+wm geometry .sigmgr._PF:1 208x311+1033+26
+wm geometry .sigmgr._PF:1 208x311+1034+26
+wm geometry .sigmgr._PF:1 208x311+1036+26
+wm geometry .sigmgr._PF:1 208x311+1037+26
+wm geometry .sigmgr._PF:1 208x311+1038+26
+wm geometry .sigmgr._PF:1 208x311+1040+26
+wm geometry .sigmgr._PF:1 208x311+1041+26
+wm geometry .sigmgr._PF:1 208x311+1042+26
+wm geometry .sigmgr._PF:1 208x311+1043+26
+wm geometry .sigmgr._PF:1 208x311+1044+26
+wm geometry .sigmgr._PF:1 208x313+1044+26
+wm geometry .sigmgr._PF:1 208x325+1044+26
+wm geometry .sigmgr._PF:1 208x425+1044+26
+wm geometry .sigmgr._PF:1 208x587+1044+26
+wm geometry .sigmgr._PF:1 208x737+1044+26
+wm geometry .sigmgr._PF:1 208x847+1044+26
+wm geometry .sigmgr._PF:1 208x862+1044+26
+wm geometry .sigmgr._PF:1 208x864+1044+26
+wm geometry .sigmgr._PF:1 208x891+1044+26
+wm geometry .sigmgr._PF:1 208x954+1044+26
+wm geometry .sigmgr._PF:1 208x959+1044+26
+wm geometry .sigmgr._PF:1 208x969+1044+26
+wm geometry .sigmgr._PF:1 208x970+1044+26
+wm geometry .sigmgr._PF:1 208x972+1044+26
+wm geometry .sigmgr._PF:1 208x971+1044+26
+wm geometry .sigmgr._PF:1 208x963+1044+26
+wm geometry .sigmgr._PF:1 208x954+1044+26
+wm geometry .sigmgr._PF:1 208x947+1044+26
+wm geometry .sigmgr._PF:1 208x945+1044+26
+wm geometry .sigmgr._PF:1 208x943+1044+26
+wm geometry .sigmgr._PF:1 208x941+1044+26
+wm geometry .sigmgr._PF:1 208x940+1044+26
+wm geometry .sigmgr._PF:1 208x939+1044+26
+wm geometry .sigmgr._PF:1 208x938+1044+26
+wm geometry .sigmgr._PF:1 208x937+1044+26
+GrXY:NewGraph
+# Graph1
+pf:read PF:1 {data_out_0 data_out_1 data_out_10 data_out_11 data_out_12 data_out_13 data_out_14 data_out_15 data_out_16 data_out_17 data_out_18 data_out_19 data_out_2 data_out_20 data_out_21 data_out_22 data_out_23 data_out_24 data_out_25 data_out_26 data_out_27 data_out_28 data_out_29 data_out_3 data_out_30 data_out_31 data_out_4 data_out_5 data_out_6 data_out_7 data_out_8 data_out_9}
+# WF:1:1 WF:1:2 WF:1:3 WF:1:4 WF:1:5 WF:1:6 WF:1:7 WF:1:8 WF:1:9 WF:1:10 WF:1:11 WF:1:12 WF:1:13 WF:1:14 WF:1:15 WF:1:16 WF:1:17 WF:1:18 WF:1:19 WF:1:20 WF:1:21 WF:1:22 WF:1:23 WF:1:24 WF:1:25 WF:1:26 WF:1:27 WF:1:28 WF:1:29 WF:1:30 WF:1:31 WF:1:32
+Graph addsignal {WF:1:1 WF:1:2 WF:1:3 WF:1:4 WF:1:5 WF:1:6 WF:1:7 WF:1:8 WF:1:9 WF:1:10 WF:1:11 WF:1:12 WF:1:13 WF:1:14 WF:1:15 WF:1:16 WF:1:17 WF:1:18 WF:1:19 WF:1:20 WF:1:21 WF:1:22 WF:1:23 WF:1:24 WF:1:25 WF:1:26 WF:1:27 WF:1:28 WF:1:29 WF:1:30 WF:1:31 WF:1:32} -region {d d d d d d d d d d d d d d d d d d d d d d d d d d d d d d d d} -yview {real(y) real(y) real(y) real(y) real(y) real(y) real(y) real(y) real(y) real(y) real(y) real(y) real(y) real(y) real(y) real(y) real(y) real(y) real(y) real(y) real(y) real(y) real(y) real(y) real(y) real(y) real(y) real(y) real(y) real(y) real(y) real(y)} -xview {real(x) real(x) real(x) real(x) real(x) real(x) real(x) real(x) real(x) real(x) real(x) real(x) real(x) real(x) real(x) real(x) real(x) real(x) real(x) real(x) real(x) real(x) real(x) real(x) real(x) real(x) real(x) real(x) real(x) real(x) real(x) real(x)} -tracehi {1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1}
+# Signal0 Signal1 Signal2 Signal3 Signal4 Signal5 Signal6 Signal7 Signal8 Signal9 Signal10 Signal11 Signal12 Signal13 Signal14 Signal15 Signal16 Signal17 Signal18 Signal19 Signal20 Signal21 Signal22 Signal23 Signal24 Signal25 Signal26 Signal27 Signal28 Signal29 Signal30 Signal31
+Mdi:Resize 1018 787
+Mdi:Move 5 5
+Graph:Select Graph1
+Graph:DSel
+Graph itemselect Signal12 add
+# Signal12
+Graph sigconfig {Signal12 Signal23 Signal24 Signal25 Signal26 Signal27 Signal28 Signal29 Signal30 Signal31} -region {d d d d d d d d d d} -rgnindex {23 24 25 26 27 28 29 30 31 32}
+Graph itemselect Signal12 rem
+Graph itemselect Signal12 add
+# Signal12
+Graph itemselect Signal23 add
+# Signal23
+Graph sigconfig {Signal12 Signal23 Signal27 Signal28 Signal29 Signal30 Signal31} -region {d d d d d d d} -rgnindex {27 28 29 30 31 32 33}
+Graph itemselect Signal12 add
+# Signal12
+Graph sigconfig {Signal12 Signal23 Signal26 Signal27 Signal28 Signal29 Signal30 Signal31} -region {d d d d d d d d} -rgnindex {24 25 26 27 28 29 30 31}
+Graph itemselect Signal12 rem
+# WF:1:24
+Graph itemselect Signal23 rem
+Graph itemselect Signal12 add
+# Signal12
+Graph itemselect Signal23 add
+# Signal23
+Graph itemselect Signal26 add
+# Signal26
+Graph itemselect Signal27 add
+# Signal27
+Graph itemselect Signal28 add
+# Signal28
+Graph itemselect Signal29 add
+# Signal29
+Graph itemselect Signal30 add
+# Signal30
+Graph itemselect Signal31 add
+# Signal31
+Graph itemselect Signal31 add
+# Signal31
+Graph sigconfig {Signal12 Signal23 Signal26 Signal27 Signal28 Signal29 Signal30 Signal31 Signal2 Signal3 Signal4 Signal5 Signal6 Signal7 Signal8 Signal9 Signal10 Signal11 Signal13 Signal14 Signal15 Signal16 Signal17 Signal18 Signal19 Signal20 Signal21 Signal22 Signal24 Signal25} -region {d d d d d d d d d d d d d d d d d d d d d d d d d d d d d d} -rgnindex {2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 21 22 23 24 25 26 27 28 29 30 31}
+Graph:DSel
+Graph itemselect Signal0 add
+# Signal0
+Graph itemselect Signal0 rem
+Graph itemselect Signal0 add
+# Signal0
+Graph itemselect Signal1 add
+# Signal1
+Graph itemselect Signal12 add
+# Signal12
+Graph itemselect Signal23 add
+# Signal23
+Graph itemselect Signal26 add
+# Signal26
+Graph itemselect Signal27 add
+# Signal27
+Graph itemselect Signal28 add
+# Signal28
+Graph itemselect Signal29 add
+# Signal29
+Graph itemselect Signal30 add
+# Signal30
+Graph itemselect Signal31 add
+# Signal31
+Graph itemselect Signal2 add
+# Signal2
+Graph itemselect Signal3 add
+# Signal3
+Graph itemselect Signal4 add
+# Signal4
+Graph itemselect Signal5 add
+# Signal5
+Graph itemselect Signal6 add
+# Signal6
+Graph itemselect Signal7 add
+# Signal7
+Graph itemselect Signal8 add
+# Signal8
+Graph itemselect Signal9 add
+# Signal9
+Graph itemselect Signal10 add
+# Signal10
+Graph itemselect Signal11 add
+# Signal11
+Graph itemselect Signal13 add
+# Signal13
+Graph itemselect Signal14 add
+# Signal14
+Graph itemselect Signal15 add
+# Signal15
+Graph itemselect Signal16 add
+# Signal16
+Graph itemselect Signal17 add
+# Signal17
+Graph itemselect Signal18 add
+# Signal18
+Graph itemselect Signal19 add
+# Signal19
+Graph itemselect Signal20 add
+# Signal20
+Graph itemselect Signal21 add
+# Signal21
+Graph itemselect Signal22 add
+# Signal22
+Graph itemselect Signal24 add
+# Signal24
+Graph itemselect Signal25 add
+# Signal25
+Graph:DSel
+Graph:DSel
+Graph itemselect Signal0 add
+# Signal0
+Graph itemselect Signal0 rem
+Graph itemselect Signal0 add
+# Signal0
+Graph itemselect Signal1 add
+# Signal1
+Graph itemselect Signal12 add
+# Signal12
+Graph itemselect Signal23 add
+# Signal23
+Graph itemselect Signal26 add
+# Signal26
+Graph itemselect Signal27 add
+# Signal27
+Graph itemselect Signal28 add
+# Signal28
+Graph itemselect Signal29 add
+# Signal29
+Graph itemselect Signal30 add
+# Signal30
+Graph itemselect Signal31 add
+# Signal31
+Graph itemselect Signal2 add
+# Signal2
+Graph itemselect Signal3 add
+# Signal3
+Graph itemselect Signal4 add
+# Signal4
+Graph itemselect Signal5 add
+# Signal5
+Graph itemselect Signal6 add
+# Signal6
+Graph itemselect Signal7 add
+# Signal7
+Graph itemselect Signal8 add
+# Signal8
+Graph itemselect Signal9 add
+# Signal9
+Graph itemselect Signal10 add
+# Signal10
+Graph itemselect Signal11 add
+# Signal11
+Graph itemselect Signal13 add
+# Signal13
+Graph itemselect Signal14 add
+# Signal14
+Graph itemselect Signal15 add
+# Signal15
+Graph itemselect Signal16 add
+# Signal16
+Graph itemselect Signal17 add
+# Signal17
+Graph itemselect Signal18 add
+# Signal18
+Graph itemselect Signal19 add
+# Signal19
+Graph itemselect Signal20 add
+# Signal20
+Graph itemselect Signal21 add
+# Signal21
+Graph itemselect Signal22 add
+# Signal22
+Graph itemselect Signal24 add
+# Signal24
+Graph itemselect Signal25 add
+# Signal25
+Graph itemselect Signal25 add
+# Signal25
+GrXY:CreateBus
+Graph delsignal selected
+Graph:DSel
+pf:read PF:1 {data_in_0 data_in_1 data_in_10 data_in_11 data_in_12 data_in_13 data_in_14 data_in_15 data_in_16 data_in_17 data_in_18 data_in_19 data_in_2 data_in_20 data_in_21 data_in_22 data_in_23 data_in_24 data_in_25 data_in_26 data_in_27 data_in_28 data_in_29 data_in_3 data_in_30 data_in_31 data_in_4 data_in_5 data_in_6 data_in_7 data_in_8 data_in_9}
+# WF:1:33 WF:1:34 WF:1:35 WF:1:36 WF:1:37 WF:1:38 WF:1:39 WF:1:40 WF:1:41 WF:1:42 WF:1:43 WF:1:44 WF:1:45 WF:1:46 WF:1:47 WF:1:48 WF:1:49 WF:1:50 WF:1:51 WF:1:52 WF:1:53 WF:1:54 WF:1:55 WF:1:56 WF:1:57 WF:1:58 WF:1:59 WF:1:60 WF:1:61 WF:1:62 WF:1:63 WF:1:64
+Graph addsignal {WF:1:33 WF:1:34 WF:1:35 WF:1:36 WF:1:37 WF:1:38 WF:1:39 WF:1:40 WF:1:41 WF:1:42 WF:1:43 WF:1:44 WF:1:45 WF:1:46 WF:1:47 WF:1:48 WF:1:49 WF:1:50 WF:1:51 WF:1:52 WF:1:53 WF:1:54 WF:1:55 WF:1:56 WF:1:57 WF:1:58 WF:1:59 WF:1:60 WF:1:61 WF:1:62 WF:1:63 WF:1:64} -region {d d d d d d d d d d d d d d d d d d d d d d d d d d d d d d d d} -yview {real(y) real(y) real(y) real(y) real(y) real(y) real(y) real(y) real(y) real(y) real(y) real(y) real(y) real(y) real(y) real(y) real(y) real(y) real(y) real(y) real(y) real(y) real(y) real(y) real(y) real(y) real(y) real(y) real(y) real(y) real(y) real(y)} -xview {real(x) real(x) real(x) real(x) real(x) real(x) real(x) real(x) real(x) real(x) real(x) real(x) real(x) real(x) real(x) real(x) real(x) real(x) real(x) real(x) real(x) real(x) real(x) real(x) real(x) real(x) real(x) real(x) real(x) real(x) real(x) real(x)} -tracehi {1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1}
+# Signal33 Signal34 Signal35 Signal36 Signal37 Signal38 Signal39 Signal40 Signal41 Signal42 Signal43 Signal44 Signal45 Signal46 Signal47 Signal48 Signal49 Signal50 Signal51 Signal52 Signal53 Signal54 Signal55 Signal56 Signal57 Signal58 Signal59 Signal60 Signal61 Signal62 Signal63 Signal64
+pf:read PF:1 {write_en}
+# WF:1:65
+Graph addsignal WF:1:65 -region d -yview real(y) -xview real(x) -tracehi 1
+# Signal65
+Graph:Select Graph1
+Graph:DSel
+Graph itemselect Signal45 add
+# Signal45
+Graph sigconfig {Signal45 Signal35 Signal36 Signal37 Signal38 Signal39 Signal40 Signal41 Signal42 Signal43 Signal44 Signal46 Signal47 Signal48 Signal49 Signal50 Signal51 Signal52 Signal53 Signal54 Signal55 Signal56 Signal57 Signal58 Signal59 Signal60 Signal61 Signal62 Signal63 Signal64 Signal65} -region {d d d d d d d d d d d d d d d d d d d d d d d d d d d d d d d} -rgnindex {3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 21 22 23 24 25 26 27 28 29 30 31 32 33}
+Graph:DSel
+Graph itemselect Signal56 add
+# Signal56
+Graph sigconfig {Signal56 Signal59 Signal60 Signal61 Signal62 Signal63 Signal64 Signal65} -region {d d d d d d d d} -rgnindex {27 28 29 30 31 32 33 34}
+Graph itemselect Signal56 rem
+Graph itemselect Signal56 add
+# Signal56
+Graph itemselect Signal59 add
+# Signal59
+Graph itemselect Signal60 add
+# Signal60
+Graph itemselect Signal61 add
+# Signal61
+Graph itemselect Signal62 add
+# Signal62
+Graph itemselect Signal63 add
+# Signal63
+Graph itemselect Signal64 add
+# Signal64
+Graph itemselect Signal64 add
+# Signal64
+Graph sigconfig {Signal56 Signal59 Signal60 Signal61 Signal62 Signal63 Signal64 Signal35 Signal36 Signal37 Signal38 Signal39 Signal40 Signal41 Signal42 Signal43 Signal44 Signal46 Signal47 Signal48 Signal49 Signal50 Signal51 Signal52 Signal53 Signal54 Signal55 Signal57 Signal58 Signal65} -region {d d d d d d d d d d d d d d d d d d d d d d d d d d d d d d} -rgnindex {4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 21 22 23 24 25 26 27 28 29 30 31 32 33}
+Graph:DSel
+Graph itemselect Signal33 add
+# Signal33
+Graph itemselect Signal33 rem
+Graph itemselect Signal33 add
+# Signal33
+Graph itemselect Signal34 add
+# Signal34
+Graph itemselect Signal45 add
+# Signal45
+Graph itemselect Signal56 add
+# Signal56
+Graph itemselect Signal59 add
+# Signal59
+Graph itemselect Signal60 add
+# Signal60
+Graph itemselect Signal61 add
+# Signal61
+Graph itemselect Signal62 add
+# Signal62
+Graph itemselect Signal63 add
+# Signal63
+Graph itemselect Signal64 add
+# Signal64
+Graph itemselect Signal35 add
+# Signal35
+Graph itemselect Signal36 add
+# Signal36
+Graph itemselect Signal37 add
+# Signal37
+Graph itemselect Signal38 add
+# Signal38
+Graph itemselect Signal39 add
+# Signal39
+Graph itemselect Signal40 add
+# Signal40
+Graph itemselect Signal41 add
+# Signal41
+Graph itemselect Signal42 add
+# Signal42
+Graph itemselect Signal43 add
+# Signal43
+Graph itemselect Signal44 add
+# Signal44
+Graph itemselect Signal46 add
+# Signal46
+Graph itemselect Signal47 add
+# Signal47
+Graph itemselect Signal48 add
+# Signal48
+Graph itemselect Signal49 add
+# Signal49
+Graph itemselect Signal50 add
+# Signal50
+Graph itemselect Signal51 add
+# Signal51
+Graph itemselect Signal52 add
+# Signal52
+Graph itemselect Signal53 add
+# Signal53
+Graph itemselect Signal54 add
+# Signal54
+Graph itemselect Signal55 add
+# Signal55
+Graph itemselect Signal57 add
+# Signal57
+Graph itemselect Signal58 add
+# Signal58
+Graph itemselect Signal38 add
+# Signal38
+GrXY:CreateBus
+Graph delsignal selected
+Graph:DSel
+Graph itemselect Signal65 add
+# Signal65
+Graph sigconfig Signal65 -region d -rgnindex 3
+Graph:DSel
+Graph itemselect Signal66 add
+# Signal66
+Graph sigconfig {Signal66 Signal32 Signal65} -region {d d d} -rgnindex {0 1 2}
+Graph:DSel
+pf:read PF:1 {address_0 address_1 address_2 address_3 address_4 address_5 address_6 address_7 address_8 address_9}
+# WF:1:66 WF:1:67 WF:1:68 WF:1:69 WF:1:70 WF:1:71 WF:1:72 WF:1:73 WF:1:74 WF:1:75
+Graph addsignal {WF:1:66 WF:1:67 WF:1:68 WF:1:69 WF:1:70 WF:1:71 WF:1:72 WF:1:73 WF:1:74 WF:1:75} -region {d d d d d d d d d d} -yview {real(y) real(y) real(y) real(y) real(y) real(y) real(y) real(y) real(y) real(y)} -xview {real(x) real(x) real(x) real(x) real(x) real(x) real(x) real(x) real(x) real(x)} -tracehi {1 1 1 1 1 1 1 1 1 1}
+# Signal67 Signal68 Signal69 Signal70 Signal71 Signal72 Signal73 Signal74 Signal75 Signal76
+Graph:Select Graph1
+Graph:DSel
+Graph itemselect Signal67 add
+# Signal67
+Graph itemselect Signal67 rem
+Graph itemselect Signal67 add
+# Signal67
+Graph itemselect Signal68 add
+# Signal68
+Graph itemselect Signal69 add
+# Signal69
+Graph itemselect Signal70 add
+# Signal70
+Graph itemselect Signal71 add
+# Signal71
+Graph itemselect Signal72 add
+# Signal72
+Graph itemselect Signal73 add
+# Signal73
+Graph itemselect Signal74 add
+# Signal74
+Graph itemselect Signal75 add
+# Signal75
+Graph itemselect Signal76 add
+# Signal76
+Graph itemselect Signal76 add
+# Signal76
+GrXY:CreateBus
+Graph delsignal selected
+Graph:DSel
+Graph itemselect Signal77 add
+# Signal77
+Graph sigconfig {Signal77 Signal66 Signal32 Signal65} -region {d d d d} -rgnindex {0 1 2 3}
+Graph:DSel
+pf:read PF:1 {clk}
+# WF:1:76
+Graph addsignal WF:1:76 -region d -yview real(y) -xview real(x) -tracehi 1
+# Signal78
+Graph:Select Graph1
+Graph:DSel
+Graph itemselect Signal78 add
+# Signal78
+Graph sigconfig {Signal78 Signal77 Signal66 Signal32 Signal65} -region {d d d d d} -rgnindex {0 1 2 3 4}
+Graph axisconfig AxisX(0) -range {46.2n 92.4n }
+Graph axisconfig AxisX(0) -range {10n 70n exact}
+Graph axisconfig AxisX(0) -range {-20n 40n exact}
+Graph axisconfig AxisX(0) -range {-50n 10n exact}
+Graph axisconfig AxisX(0) -range {-20n 40n exact}
+Graph axisconfig AxisX(0) -range {10n 70n exact}
+Graph axisconfig AxisX(0) -range {40n 100n exact}
