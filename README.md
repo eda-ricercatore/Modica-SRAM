@@ -10,3 +10,6 @@ It also includes HSPICE decks for the characterization of the 6-transistor SRAM 
 Co-designed and co-developed the SRAM using schematic entry in Cadence Virtuoso.  
 
 Performed functional and timing verification by simulating extracted SPICE netlist in NanoSim.
+
+
+See [EE577b_SRAMII_AJM_ZO_20071026144055528.pdf](https://github.com/eda-ricercatore/eda-ricercatore.github.io/blob/master/vecchi-progetti/vlsi-design-projects/Viterbi_decoder_AJM_ZO.pdf) for a report of this SRAM project.
