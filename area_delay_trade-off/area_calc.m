@@ -1,8 +1,6 @@
 %{
-This is written by Zhiyang Ong (zhiyango@usc.edu;
-6004 9194 12) and Andrew Mattheisen (mattheis@usc.edu;
-2134 5147 11) for EE 577B, SRAM Project - Part 2, Questions
-1 and 2
+This is written by Zhiyang Ong and Andrew Mattheisen for
+	EE 577B, SRAM Project - Part 2, Questions 1 and 2
 
 Area calculation for the SRAM
 @param num_rows is the number of rows in the SRAM block
