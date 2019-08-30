@@ -1,5 +1,5 @@
-*Andrew Mattheisen amattheisen@yahoo.com
-*Zhiyang Ong zhiyang@ieee.org
+*Andrew Mattheisen
+*Zhiyang Ong 
 radix 11111111111111111111111111111111111111111111111
 **********************************************************
 vname PRE_CAN    WORD_EN_CAN    WRITE_EN_CAN    READ_EN_CAN

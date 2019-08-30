@@ -1,5 +1,5 @@
-*Andrew Mattheisen amattheisen@yahoo.com
-*Zhiyang Ong Zhiyang@ieee.org
+*Andrew Mattheisen
+*Zhiyang Ong 
 *
 .param vsupply = 1.8v
 .param period = 5.3n
